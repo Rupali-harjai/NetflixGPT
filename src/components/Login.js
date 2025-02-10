@@ -9,7 +9,7 @@ import {
 import { auth } from "../utilis/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utilis/userSlice";
-import { AVTAR_PROFILE } from "../utilis/constants";
+import { AVTAR_PROFILE, BG_IMG_URL } from "../utilis/constants";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -94,7 +94,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/826348c2-cdcb-42a0-bc11-a788478ba5a2/6d20b198-e7ab-4e9f-a1aa-666faa0298f9/IN-en-20240729-POP_SIGNUP_TWO_WEEKS-perspective_WEB_a67d8c9e-8121-4a74-98e4-8005eb2df227_large.jpg"
+          src={BG_IMG_URL}
           alt="bg-image"
         />
       </div>

@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { addUser, removeUser } from "../utilis/userSlice";
 import { useDispatch } from "react-redux";
 import { NETFLIX_LOGO } from "../utilis/constants";
+import { toggleGptSearchView } from "../utilis/gptSlice";
 
 
 const Header = () => {
@@ -47,6 +48,9 @@ const Header = () => {
     return ()=> unsubscribe();
   },[]);
 
+  const handleSearchgpt =()=>{
+    dispatch(toggleGptSearchView());
+  }
   return (
     <>
       <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black flex justify-between z-10">
@@ -57,13 +61,17 @@ const Header = () => {
         />
 
         {user && (
+         
           <div className="flex flex-row gap-2">
             <img
               alt="userIcon"
-              src={user?.photoURL}
+              src={user.photoURL}
               className="w-10 h-10 mt-4 rounded-sm cursor-pointer"
             />
-            <button onClick={handleSignOut} className="text-white font-bold">
+         <button onClick={handleSearchgpt} className="text-white font-bold bg-blue-700 px-2 py-4 rounded-lg">
+              Search Gpt
+            </button>
+            <button onClick={handleSignOut} className="text-white font-bold bg-red-700 px-2 py-4 rounded-lg">
               Sign Out
             </button>
           </div>

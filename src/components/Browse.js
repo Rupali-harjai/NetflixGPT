@@ -1,19 +1,34 @@
-import React  from "react";
+import React from "react";
 import Header from "./Header";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies.js";
 import MainContainer from "./MainContainer.js";
 import SecondaryContainer from "./SecondaryContainer.js";
-
+import usePopularMovies from "../hooks/usePopularMovies.js";
+import useTopRatedMovies from "../hooks/useTopRatedMovies.js";
+import useUpcomingMovies from "../hooks/useUpcomingMovies.js";
+import { useSelector } from "react-redux";
+import GptSearch from "./GptSearch.js";
 
 const Browse = () => {
+  useNowPlayingMovies();
+  usePopularMovies();
+  useTopRatedMovies();
+  useUpcomingMovies();
 
-   useNowPlayingMovies();
+
+  const showgptView = useSelector((store)=> store.gptSearch.showgptSearch);
   return (
     <>
       <div className="flex flex-col relative">
-        <Header />
-        <MainContainer/>
-        <SecondaryContainer/>
+      <Header />
+        {showgptView ? (
+        <GptSearch/>
+        ) : (
+          <>
+            <MainContainer />
+            <SecondaryContainer />
+          </>
+        )}
       </div>
     </>
   );
