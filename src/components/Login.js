@@ -1,14 +1,14 @@
 import React, { useState, useRef } from "react";
 import Header from "./Header";
-import { checkValidData } from "../utilis/validate";
+import { checkValidData } from "../utilis/Firebase/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../utilis/firebase";
+import { auth } from "../utilis/Firebase/firebase";
 import { useDispatch } from "react-redux";
-import { addUser } from "../utilis/userSlice";
+import { addUser } from "../utilis/store/userSlice";
 import { AVTAR_PROFILE, BG_IMG_URL } from "../utilis/constants";
 
 const Login = () => {

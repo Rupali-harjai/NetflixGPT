@@ -1,7 +1,7 @@
 
 import  { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTopRatedMovies } from "../utilis/moviesSlice";
+import { addTopRatedMovies } from "../utilis/store/moviesSlice";
 import { API_OPTIONS } from "../utilis/constants";
 
 const useTopRatedMovies = () => {

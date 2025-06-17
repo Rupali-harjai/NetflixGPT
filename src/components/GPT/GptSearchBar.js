@@ -1,9 +1,9 @@
 import { useRef } from "react";
-import lang from "../utilis/languageConstant";
+import lang from "../../utilis/languageConstant";
 import { useDispatch, useSelector } from "react-redux";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { API_OPTIONS, OPENAI_GPT_KEY } from "../utilis/constants";
-import { addGptMovieResult } from "../utilis/gptSlice";
+import { API_OPTIONS, OPENAI_GPT_KEY } from "../../utilis/constants";
+import { addGptMovieResult } from "../../utilis/store/gptSlice";
 
 const GptSearchBar = () => {
   const langKey = useSelector((store) => store.config.lang);
