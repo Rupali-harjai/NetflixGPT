@@ -5,25 +5,16 @@ import { BG_IMG_URL } from '../utilis/constants'
 
 const GptSearch = () => {
   return (
-    <>
-      {/* Background Image */}
-      
-      <div className="relative" >
-        <img
-          src={BG_IMG_URL}
-          alt="bg-image"
-          className="w-full h-full object-cover -z-20"
-        />
-       
+       <>
+      <div className="fixed -z-10">
+        <img className="h-screen w-screen object-cover" src={BG_IMG_URL} alt="logo" />
       </div>
-
-      {/* Content */}
-      <div className="absolute top-[50%] translate-x-[-50%] translate-y-[-50%] left-[50%] ">
-        <GptSearchBar />
+      <div className="">
+        <GptSearchBar /> 
         <GptMovieSuggestions />
       </div>
     </>
-  )
-}
+  );
+};
 
 export default GptSearch

@@ -67,22 +67,37 @@ const Login = () => {
     }
 
     // Sign In
-    if (isSignIn) {
-      signInWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value
-      )
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
+  if (!isSignIn) {
+  createUserWithEmailAndPassword(
+    auth,
+    email.current.value,
+    password.current.value
+  )
+    .then((userCredential) => {
+      const user = userCredential.user;
+
+      return updateProfile(user, {
+        displayName: name.current.value,
+        photoURL: AVTAR_PROFILE, // ✅ Fix here
+      });
+    })
+    .then(() => {
+      const { uid, email, displayName, photoURL } = auth.currentUser;
+      console.log('photoURL', photoURL);
+      dispatch(
+        addUser({
+          uid,
+          email,
+          displayName,
+          photoURL,
         })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMessage(`${errorCode} - ${errorMessage}`);
-        });
-    }
+      );
+    })
+    .catch((error) => {
+      setErrorMessage(`${error.code} - ${error.message}`);
+    });
+}
+
   };
 
   const toggleSignIn = () => {
@@ -92,16 +107,17 @@ const Login = () => {
   return (
     <>
       <Header />
-      <div className="absolute">
+      <div className="fixed">
         <img
           src={BG_IMG_URL}
           alt="bg-image"
+          className="h-screen w-screen object-cover"
         />
       </div>
 
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="w-full md:w-4/12 absolute p-12 bg-black my-32 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
+        className="w-full md:w-5/12 absolute p-5 md:p-8 bg-black my-32 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
       >
         <h1 className="font-bold text-3xl mb-6 ">
           {isSignIn ? "Sign In" : "Sign Up"}
